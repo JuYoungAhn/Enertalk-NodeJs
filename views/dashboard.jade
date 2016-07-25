@@ -1,0 +1,31 @@
+html
+  head
+    title= title
+    script(type='text/javascript' src='jquery-3.1.0.min.js')
+    script(type='text/javascript' src='enertalk.js')
+    link(href='style.css', rel='stylesheet')
+  body
+    h1 Enertalk API Dashboard
+    div
+      h3 uuid : #{uuid}
+      h3 access_token : #{accessToken}
+    div
+      a(href="#" onclick="getRealtimeData('#{accessToken}', '#{uuid}')") Realtime Usage
+
+    div
+      table(class='realtimeTable')
+        tr(class='subjectTr')
+          th timeStamp
+          th apparentPower
+          th activePower
+          th reactivePower
+          th powerFactor
+          th current
+          th voltage
+          th wattHour
+          th powerBase
+
+    script(type='text/javascript').
+       $(document).ready(function(){
+         setInterval(function(){getRealtimeData('#{accessToken}', '#{uuid}');}, 6000);
+       });
